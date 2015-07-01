@@ -9,13 +9,17 @@ var SvgIcon = React.createClass({
     muiTheme: React.PropTypes.object
   },
 
-  propTypes: {
-    viewBox: React.PropTypes.string
+  getTheme: function() {
+    return this.context.muiTheme.palette;
   },
 
-  getDefaultProps: function() {
+  getStyles: function() {
     return {
-      viewBox: '0 0 24 24'
+      display: 'inline-block',
+      height: '24px',
+      width: '24px',
+      userSelect: 'none',
+      fill: this.getTheme().textColor
     };
   },
 
@@ -27,20 +31,14 @@ var SvgIcon = React.createClass({
       ...other
     } = this.props;
 
-    var mergedStyles = this.mergeAndPrefix({
-      display: 'inline-block',
-      height: '24px',
-      width: '24px',
-      userSelect: 'none',
-      fill: this.context.muiTheme.palette.textColor
-    }, style);
-
     return (
       <svg
         {...other}
-        viewBox={viewBox}
-        style={mergedStyles}>
-        {this.props.children}
+        viewBox="0 0 24 24"
+        style={this.mergeAndPrefix(
+          this.getStyles(), 
+          this.props.style)}>
+            {this.props.children}
       </svg>
     );
   }

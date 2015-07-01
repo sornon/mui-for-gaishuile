@@ -1,4 +1,6 @@
+var Color = require('./colors');
 var Spacing = require('./spacing');
+var ColorManipulator = require('../utils/color-manipulator');
 var Extend = require('../utils/extend');
 
 var Types = {

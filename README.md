@@ -1,4 +1,4 @@
-#[Material-UI](http://callemall.github.io/material-ui/)
+# [Material-UI](http://callemall.github.io/material-ui/)
 
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/callemall/material-ui?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -16,7 +16,8 @@ Material-UI is available as an [npm package](https://www.npmjs.org/package/mater
 ```sh
 npm install material-ui
 ```
-After npm install, you'll find all the .jsx files in the /src folder and their compiled versions in the /lib folder.
+
+Use [browserify](http://browserify.org/) and [reactify](https://github.com/andreypopp/reactify) for dependency management and JSX transformation. 
 
 ### React-Tap-Event-Plugin
 Some components use [react-tap-event-plugin](https://github.com/zilverline/react-tap-event-plugin) to
@@ -58,11 +59,6 @@ var MyAwesomeReactComponent = React.createClass({
 
 module.exports = MyAwesomeReactComponent;
 ```
-
-### Theme
-
-Please note that since v0.8.0, you also need to define a theme for components to start working.
-
 
 ## Customization
 

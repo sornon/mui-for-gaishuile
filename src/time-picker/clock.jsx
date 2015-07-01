@@ -5,6 +5,7 @@ var TimeDisplay = require("./time-display");
 var ClockButton = require("./clock-button");
 var ClockHours = require("./clock-hours");
 var ClockMinutes = require("./clock-minutes");
+var SlideInTransitionGroup = require('../transition-groups/slide-in');
 
 var Clock = React.createClass({
 
@@ -16,7 +17,7 @@ var Clock = React.createClass({
     format: React.PropTypes.oneOf(['ampm', '24hr']),
     isActive: React.PropTypes.bool
   },
-
+ 
   init: function(){
     this.setState({
       mode: 'hour'
@@ -25,12 +26,12 @@ var Clock = React.createClass({
 
   getDefaultProps: function() {
     return {
-      initialTime: new Date()
+      initialTime: new Date() 
     };
   },
 
   componentWillReceiveProps: function (nextProps) {
-
+   
     this.setState({
       selectedTime: nextProps.initialTime
     });
@@ -40,7 +41,7 @@ var Clock = React.createClass({
 
     return {
       selectedTime: this.props.initialTime,
-      mode: 'hour'
+      mode: 'hour'  
     };
   },
 
@@ -52,7 +53,7 @@ var Clock = React.createClass({
         })
       }.bind(this), 100);
   },
-
+ 
   _setAffix: function(affix){
 
     if(affix == this._getAffix()) return;
@@ -83,14 +84,14 @@ var Clock = React.createClass({
   _getButtons: function(){
     var buttons = [];
     var isAM = this._getIsAM();
-
+   
     if(this.props.format == 'ampm'){
       buttons = [
         <ClockButton position="left" onTouchTap={this._setAffix.bind(this, "am")} selected={isAM} >{"AM"}</ClockButton>,
         <ClockButton position="right" onTouchTap={this._setAffix.bind(this, "pm")} selected={!isAM} >{"PM"}</ClockButton>
       ];
     }
-    return buttons;
+    return buttons; 
   },
 
   _getIsAM: function(){
@@ -102,7 +103,7 @@ var Clock = React.createClass({
   render: function() {
 
     var clock = null;
-    var buttons = this._getButtons();
+    var buttons = this._getButtons(); 
 
     var styles = {
       root: {},
@@ -124,14 +125,14 @@ var Clock = React.createClass({
       clock = <ClockMinutes key="minutes"
                 onChange={this.handleChangeMinutes}
                 initialMinutes={this.state.selectedTime.getMinutes()} />
-
+   
     }
 
 
     return (
       <div style={styles.root} >
-
-        <TimeDisplay
+        
+        <TimeDisplay 
           selectedTime={this.state.selectedTime}
           mode={this.state.mode}
           format={this.props.format}
@@ -139,22 +140,22 @@ var Clock = React.createClass({
           onSelectHour={this._setMode.bind(this, 'hour')}
           onSelectMin={this._setMode.bind(this, 'minute')}
            />
-
+        
         <div
           style={styles.container} >
           {clock}
-        </div>
+        </div> 
        {buttons}
       </div>
     );
   },
   handleChangeHours: function(hours, finished){
     var time = new Date(this.state.selectedTime);
-
+     
     time.setHours(hours);
     this.setState({
       selectedTime: time
-    });
+    });    
 
     if(finished){
       setTimeout(function(){

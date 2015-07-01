@@ -1,10 +1,12 @@
 var React = require('react');
 var StylePropable = require('../mixins/style-propable');
 
+var SlideInTransitionGroup = require('../transition-groups/slide-in');
+
 var TimeDisplay = React.createClass({
 
   mixins: [StylePropable],
-
+ 
   contextTypes: {
     muiTheme: React.PropTypes.object
   },
@@ -24,7 +26,7 @@ var TimeDisplay = React.createClass({
   getDefaultProps: function () {
       return {
           mode: 'hour' ,
-          affix: ''
+          affix: '' 
       };
   },
   componentWillReceiveProps: function(nextProps) {
@@ -37,7 +39,7 @@ var TimeDisplay = React.createClass({
       });
     }
   },
-  sanitizeTime: function() {
+  sanitizeTime: function(time){
     var hour = this.props.selectedTime.getHours();
     var min = this.props.selectedTime.getMinutes().toString();
 
@@ -57,13 +59,13 @@ var TimeDisplay = React.createClass({
     return this.context.muiTheme.component.timePicker;
   },
   render: function() {
-
+    
 		var {
 			selectedTime,
 			mode,
 			...other
 		} = this.props;
-
+     
 		var styles = {
 			root: {
 				textAlign: "center",
@@ -86,13 +88,17 @@ var TimeDisplay = React.createClass({
 			},
 
 
-			hour: {},
-
+			hour: {}, 
+			
 			minute: {}
 		}
 
 
     var [hour, min] =  this.sanitizeTime();
+    
+     
+    var hourClassName = "";
+    var minClassName = "";
 
     styles[mode].color = this.getTheme().accentColor;
 
@@ -100,15 +106,15 @@ var TimeDisplay = React.createClass({
       <div {...other} style={this.mergeAndPrefix(styles.root)} >
 
         <div style={this.mergeAndPrefix(styles.box)} >
-
-
-          <div style={this.mergeAndPrefix(styles.time)} >
+ 
+         
+          <div style={this.mergeAndPrefix(styles.time)} > 
             <span style={this.mergeAndPrefix(styles.hour)} onTouchTap={this.props.onSelectHour}>{hour}</span>
             <span>:</span>
             <span style={this.mergeAndPrefix(styles.minute)} onTouchTap={this.props.onSelectMin}>{min}</span>
           </div>
          <span key={"affix"}>{this.props.affix.toUpperCase()}</span>
-
+          
 
         </div>
 
@@ -121,4 +127,4 @@ var TimeDisplay = React.createClass({
 module.exports = TimeDisplay;
 
 
-
+ 

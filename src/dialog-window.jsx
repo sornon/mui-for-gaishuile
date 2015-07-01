@@ -156,19 +156,12 @@ var DialogWindow = React.createClass({
   },
 
   _getAction: function(actionJSON, key) {
+    var onClickHandler = actionJSON.onClick ? actionJSON.onClick : this.dismiss;
     var styles = {marginRight: 8};
     var props = {
       key: key,
       secondary: true,
-      onClick: actionJSON.onClick,
-      onTouchTap: () => {
-        if (actionJSON.onTouchTap) {
-          actionJSON.onTouchTap.call(undefined);
-        }
-        if (!(actionJSON.onClick || actionJSON.onTouchTap)) {
-          this.dismiss();
-        }
-      },
+      onClick: onClickHandler,
       label: actionJSON.text,
       style: styles
     };

@@ -2,6 +2,9 @@ var React = require('react');
 var StylePropable = require('./mixins/style-propable');
 var Transitions = require("./styles/transitions");
 
+  var easeInOut = "cubic-bezier(0.35, 0, 0.25, 1)";                                                   
+ 
+
 var CircularProgress = React.createClass({
 
   mixins: [StylePropable],
@@ -30,7 +33,7 @@ var CircularProgress = React.createClass({
   },
 
   componentDidMount: function () {
-
+ 
     var wrapper = React.findDOMNode(this.refs.wrapper);
     var path = React.findDOMNode(this.refs.path);
 
@@ -71,9 +74,9 @@ var CircularProgress = React.createClass({
 
   },
   _rotateWrapper: function(wrapper){
-
+    
     setTimeout(this._rotateWrapper.bind(this, wrapper), 10050);
-
+    
     if(!this.isMounted()) return;
     if(this.props.mode != "indeterminate") return;
 
@@ -96,7 +99,7 @@ var CircularProgress = React.createClass({
           size: 1
       };
   },
-
+  
   getTheme: function() {
     return this.context.muiTheme.palette;
   },
@@ -134,7 +137,7 @@ var CircularProgress = React.createClass({
       },
       path: {
         strokeDasharray: "89,200",
-        strokeDashoffset: 0,
+        strokeDashoffset: 0,        
         stroke: this.getTheme().primary1Color,
         strokeLinecap: "round",
         transition: Transitions.create("all", "1.5s", null, "ease-in-out")
@@ -159,7 +162,7 @@ var CircularProgress = React.createClass({
       ...other
     } = this.props;
 
-
+    
     var styles = this.getStyles(size || 1);
 
     return (

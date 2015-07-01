@@ -1,4 +1,5 @@
 var React = require('react');
+var TabTemplate = require('./tabTemplate');
 var StylePropable = require('../mixins/style-propable.js');
 var Colors = require('../styles/colors.js')
 var Tab = React.createClass({
@@ -28,7 +29,7 @@ var Tab = React.createClass({
       'height': '48px',
       'color': Colors.white,
       'opacity': '.6',
-      'fontSize': '14px',
+      'fontSize': '14sp',
       'fontWeight': '500',
       'whiteSpace': 'initial',
       'fontFamily': this.context.muiTheme.contentFontFamily,
